@@ -43,6 +43,7 @@ data "aws_ami" "debian" {
 
 # ----------------------------------------
 # IAM Role (EC2 -> S3 access)
+# Profile -> Role(s) -> Policy(s)
 # ----------------------------------------
 
 resource "aws_iam_role" "ec2" {
@@ -53,7 +54,7 @@ resource "aws_iam_role" "ec2" {
     Statement = [{
       Effect    = "Allow"
       Principal = { Service = "ec2.amazonaws.com" }
-      Action    = "sts:AssumeRole"
+      Action    = "sts:AssumeRole" # Allow EC2 instances to use this IAM role
     }]
   })
 }
