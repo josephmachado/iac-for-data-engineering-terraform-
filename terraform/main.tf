@@ -6,6 +6,12 @@ terraform {
     }
   }
 
+  backend "s3" {
+    bucket  = "your-backend-state-bucket"
+    key     = "dev/terraform.tfstate"
+    region  = "us-east-1"
+    encrypt = true
+  }
   required_version = ">= 1.2"
 }
 
