@@ -9,12 +9,32 @@
 3. [AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 4. [AWS cli setup](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-quickstart.html)
 
+### Grant permissions to your AWS cli Account
+
+#### Create an IAM user 
+
+![Create IAM User](./create_iam_user.png)
+
+#### Create an Inline Policy 
+
+![Add Inline Policy](./add_inline_policy.png)
+
+#### Grant Full S3, EC2, IAM access to the Inline Policy
+
+![Grant S3, EC2, IAM full access](./s3_ec2_iam_all_access.png)
+
+> [!CAUTION]
+> This is not recommended for production use cases
+
+
+## Create infrastructure 
+
 Initialize terraform as shown below 
 
 ```bash 
-terraform -chdir=terraform init
-terraform -chdir=terraform validate
-terraform -chdir=terraform fmt
+terraform -chdir=terraform init -var-file=envs/dev.tfvars
+terraform -chdir=terraform validate -var-file=envs/dev.tfvars
+terraform -chdir=terraform fmt -var-file=envs/dev.tfvars
 ```
 
 Check that S3 and EC2 are working as expected.
@@ -30,5 +50,7 @@ aws ec2 describe-instances \
 Let's look at the state file 
 
 ```bash 
-cat terraform/terraform.tfstate |jq -r '.resources[] | [.type, .name] | join(",")''
+cat terraform/terraform.tfstate |jq -r '.resources[] | [.type, .name] | join(",")'
+# or 
+terraform -chdir=terraform state list
 ```
