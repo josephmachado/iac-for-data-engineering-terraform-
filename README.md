@@ -44,7 +44,7 @@ Code for blog: [Infrastructure-as-code for Data Engineers with Terraform](https:
 Initialize terraform as shown below 
 
 > [!WARNING]
-> Change the bucket name at [main.tf](./terraform/main.tf)
+> Change the bucket name at [main.tf](./terraform/main.tf) to something unique to you
 
 ```bash 
 terraform -chdir=terraform init 
