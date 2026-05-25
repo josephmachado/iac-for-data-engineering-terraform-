@@ -1,4 +1,16 @@
+* [Learn IAC for data engineering with Terraform](#learn-iac-for-data-engineering-with-terraform)
+    * [Setup](#setup)
+        * [Prerequisites](#prerequisites)
+        * [Grant permissions to your AWS cli Account](#grant-permissions-to-your-aws-cli-account)
+            * [Create an IAM user](#create-an-iam-user)
+            * [Create an Inline Policy](#create-an-inline-policy)
+            * [Grant Full S3, EC2, IAM access to the Inline Policy](#grant-full-s3-ec2-iam-access-to-the-inline-policy)
+    * [Create infrastructure](#create-infrastructure)
+    * [Destroy infrastructure](#destroy-infrastructure)
+
 # Learn IAC for data engineering with Terraform
+
+Code for blog: [Infrastructure-as-code for Data Engineers with Terraform](https://www.startdataengineering.com/post/iac-for-data-engineering-terraform)
 
 ## Setup 
 
