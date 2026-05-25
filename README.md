@@ -31,6 +31,9 @@
 
 Initialize terraform as shown below 
 
+> [!WARNING]
+> Change the bucket name at [dev.tfvars](./terraform/envs/dev.tfvars)
+
 ```bash 
 terraform -chdir=terraform init -var-file=envs/dev.tfvars
 terraform -chdir=terraform validate -var-file=envs/dev.tfvars
@@ -39,7 +42,7 @@ terraform -chdir=terraform fmt -var-file=envs/dev.tfvars
 
 Check that S3 and EC2 are working as expected.
 
-```bash 
+```bash
 aws s3 ls 
 aws ec2 describe-instances \
   --filters "Name=instance-state-name,Values=running" \
@@ -53,4 +56,12 @@ Let's look at the state file
 cat terraform/terraform.tfstate |jq -r '.resources[] | [.type, .name] | join(",")'
 # or 
 terraform -chdir=terraform state list
+```
+
+## Destroy infrastructure 
+
+Once done, don't forget to destroy infrastructure as shown below.
+
+```bash 
+terraform -chdir=terraform destroy -var-file=envs/dev.tfvars
 ```
