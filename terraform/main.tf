@@ -16,7 +16,7 @@ terraform {
 }
 
 provider "aws" {
-  region = var.aws_region
+  region = "us-east-1"
 }
 
 # ----------------------------------------
@@ -24,7 +24,7 @@ provider "aws" {
 # ----------------------------------------
 
 resource "aws_s3_bucket" "input_bucket" {
-  bucket        = var.input_bucket
+  bucket        = "sde-iac-tutorial-bucket"
   force_destroy = true
 }
 
@@ -96,7 +96,7 @@ resource "aws_iam_instance_profile" "ec2" {
 
 resource "aws_instance" "this" {
   ami                  = data.aws_ami.debian.id
-  instance_type        = var.instance_type
+  instance_type        = "t3.micro"
   iam_instance_profile = aws_iam_instance_profile.ec2.name
 
   user_data = <<-EOF
