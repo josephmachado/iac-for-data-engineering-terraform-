@@ -4,17 +4,13 @@ terraform {
       source  = "hashicorp/aws"
       version = "~> 5.92"
     }
-    local = {
-      source  = "hashicorp/local"
-      version = "~> 2.0"
-    }
   }
 
   required_version = ">= 1.2"
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.aws_region
 }
 
 # ----------------------------------------
@@ -22,7 +18,7 @@ provider "aws" {
 # ----------------------------------------
 
 resource "aws_s3_bucket" "input_bucket" {
-  bucket        = "sde-iac-tutorial-bucket"
+  bucket        = var.input_bucket
   force_destroy = true
 }
 
@@ -94,7 +90,7 @@ resource "aws_iam_instance_profile" "ec2" {
 
 resource "aws_instance" "this" {
   ami                  = data.aws_ami.debian.id
-  instance_type        = "t3.micro"
+  instance_type        = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.ec2.name
 
   user_data = <<-EOF
