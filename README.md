@@ -44,12 +44,13 @@ Code for blog: [Infrastructure-as-code for Data Engineers with Terraform](https:
 Initialize terraform as shown below 
 
 > [!WARNING]
-> Change the bucket name at [dev.tfvars](./terraform/envs/dev.tfvars)
+> Change the bucket name at [main.tf](./terraform/main.tf)
 
 ```bash 
-terraform -chdir=terraform init -var-file=envs/dev.tfvars
-terraform -chdir=terraform validate -var-file=envs/dev.tfvars
-terraform -chdir=terraform fmt -var-file=envs/dev.tfvars
+terraform -chdir=terraform init 
+terraform -chdir=terraform validate 
+terraform -chdir=terraform fmt 
+terraform -chdir=terraform apply
 ```
 
 Check that S3 and EC2 are working as expected.
@@ -75,5 +76,5 @@ terraform -chdir=terraform state list
 Once done, don't forget to destroy infrastructure as shown below.
 
 ```bash 
-terraform -chdir=terraform destroy -var-file=envs/dev.tfvars
+terraform -chdir=terraform destroy
 ```
