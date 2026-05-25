@@ -4,7 +4,8 @@ variable "aws_region" {
 }
 
 variable "input_bucket" {
-  type = string
+  type    = string
+  default = "some-bucket"
 }
 
 variable "instance_type" {
